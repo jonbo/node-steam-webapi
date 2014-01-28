@@ -8,7 +8,7 @@ All the methods are created at runtime (available after Steam.ready, which fetch
 No need to worry about calling the correct API version, as it will always be the latest. If you must use a different version simply pass in {'version'}.
 
 
-[List of methods](https://github.com/jonbo/node-steam-webapi/api_method_list.txt)
+[List of methods](https://github.com/jonbo/node-steam-webapi/blob/master/api_method_list.txt)
 
 To install:
 
