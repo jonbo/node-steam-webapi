@@ -1,7 +1,7 @@
 // Dependencies
 var http = require('http');
 var https = require('https');
-var querystring = require('querystring');
+var querystring = require('qs');
 
 
 /**
@@ -37,15 +37,14 @@ Steam.INTERFACES = {};
 Steam.ready = function(key, callback) {
     retrieveSteamAPIMethods(key, callback);
 };
+Steam.devMode = false;
 
 // Create easy reference to the prototype
 var steam = Steam.prototype;
 
 // Global defaults
-steam.secure = false;
+steam.secure = true;
 steam.host = 'api.steampowered.com';
-steam.httpMethod = 'GET';
-steam.echoHTTPRequests = false;
 
 /**
  * Helper function to make the HTTP request with a valid Steam WebAPI url
@@ -56,16 +55,27 @@ steam.echoHTTPRequests = false;
  * @param {Object} parameters
  * @param {Function} callback The data returned by the request
  */
-steam.request = function(interfaceName, funcName, version, parameters, callback) {
+steam.request = function(interfaceName, funcName, version, httpMethod, parameters, callback) {
     // Allow to be passed as a number or string
     if (typeof(version) === 'number' || !isNaN(parseInt(version))) version = 'v'+version;
 
     if (typeof(parameters) === 'object') parameters = querystring.stringify(parameters);
 
     var options = {
+        method: httpMethod,
         host : get(this, null, 'host'),
-        path : '/' + interfaceName + '/' + funcName + '/' + version + '/?' + parameters
+        path : '/' + interfaceName + '/' + funcName + '/' + version
     };
+    if (httpMethod === "GET") {
+        options.path += '/?' + parameters;
+    }
+    else if (httpMethod === "POST") {
+        options.headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(parameters)
+        };
+        options.data = parameters;
+    }
 
     request(this, options, callback);
 
@@ -89,7 +99,7 @@ function get(self, steamObj, key) {
 function request(self, options, callback) {
     var _http = get(self, options, 'secure')? https : http;
 
-    if (self.echoHTTPRequests) console.log(options);
+    if (Steam.devMode) console.log(options);
 
     var req = _http.request(options, function(res) {
         var data, dataStr = '';
@@ -120,10 +130,10 @@ function request(self, options, callback) {
             }
 
             // Trim or simplify data object if it's entirely wrapped in data.response or data.result
-            if (data.response !== undefined) {
+            if ((data.response instanceof Object) && (Object.keys(data).length === 1)) {
                 data = data.response;
             }
-            if (data.result !== undefined) {
+            if ((data.result instanceof Object) && Object.keys(data).length === 1) {
                 data = data.result;
             }
             callback(null, data);
@@ -131,7 +141,7 @@ function request(self, options, callback) {
 
     });
 
-    req.end();
+    req.end(options.data);
 
     req.on('error', function(err) {
        callback(err);
@@ -145,12 +155,20 @@ function getParams(self, steamObj, requiredParams, optionalParams) {
     var paramObj = {};
     for (var i = 0, len = requiredParams.length; i < len; i++) {
         var paramName = requiredParams[i];
+
+        // Support array arguments
+        paramName = paramName.replace("[0]","");
+
         paramObj[paramName] = get(self, steamObj, paramName);
     }
 
     // Ignore the thrown exception on optionalParams if field isn't given
     for (var i = 0, len = optionalParams.length; i < len; i++) {
         var paramName = optionalParams[i];
+
+        // Support array arguments
+        paramName = paramName.replace("[0]","");
+
         try {
             paramObj[paramName] = get(self, steamObj, paramName);
         } catch(e) {
@@ -200,7 +218,7 @@ function addInterfaceMethod(interfaceName, funcName, fN) {
 }
 
 // Builds the method and add references
-function buildSteamWrapperMethod(interfaceName, funcName, defaultVersion, requiredParams, optionalParams) {
+function buildSteamWrapperMethod(interfaceName, funcName, defaultVersion, httpMethod, requiredParams, optionalParams) {
 
     // Always include the key, if we have one
     optionalParams.push('key');
@@ -211,19 +229,16 @@ function buildSteamWrapperMethod(interfaceName, funcName, defaultVersion, requir
     }
 
     var wrapperMethod = function(steamObj, callback) {
-            var params = getParams(this, steamObj, requiredParams, optionalParams);
-            var version = steamObj.version || defaultVersion;
-            this.request(interfaceName, funcName, version, params, callback);
+        var params = getParams(this, steamObj, requiredParams, optionalParams);
+        var version = steamObj.version || defaultVersion;
+        this.request(interfaceName, funcName, version, httpMethod, params, callback);
     };
-
-    wrapperMethod.requiredParams = requiredParams;
-    wrapperMethod.optionalParams = optionalParams;
 
     addInterfaceMethod(interfaceName, funcName, wrapperMethod);
 }
 
 // All we need to get started, we will build and attach the rest at run-time
-buildSteamWrapperMethod('ISteamWebAPIUtil', 'GetSupportedAPIList', 1, [], ['key']);
+buildSteamWrapperMethod('ISteamWebAPIUtil', 'GetSupportedAPIList', 1, "GET", [], ['key']);
 
 
 // Retrieve all Steam WebAPI http methods and add to our class prototype
@@ -260,7 +275,7 @@ function retrieveSteamAPIMethods(key, callback) {
                     }
                 }
 
-                buildSteamWrapperMethod(_interface.name, method.name, method.version, requiredParams, optionalParams);
+                buildSteamWrapperMethod(_interface.name, method.name, method.version, method.httpmethod, requiredParams, optionalParams);
             }
         }
         callback();
@@ -272,6 +287,8 @@ function retrieveSteamAPIMethods(key, callback) {
 function isMultiGameInterface(_interface) {
     return _interface.indexOf('_') !== -1;
 }
+
+
 
 // Object extend
 function extend(destination, source) {

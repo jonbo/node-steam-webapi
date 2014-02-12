@@ -1,47 +1,61 @@
-var Steam = require('../lib/Steam');
+var Steam = require('..');
 var fs = require('fs');
 
 // Create a file called STEAM_KEY and stick your API key in it
-var steamAPIKey = fs.readFileSync('./STEAM_KEY').toString();
+// (or insert it here)
+var steamAPIKey = '';
+if (steamAPIKey.length === 0) {
+    try { steamAPIKey = fs.readFileSync('../STEAM_KEY').toString();}
+    catch(e) {
+        try { steamAPIKey = fs.readFileSync('./STEAM_KEY').toString(); }
+        catch(e) { console.log('No API key provided'); }
+    }
+}
 
 Steam.ready(steamAPIKey, function(err) {
 
     if (err) return console.log(err);
+    var steam = new Steam({key:steamAPIKey});
 
     console.log("Generated on "+(new Date()).toUTCString());
-    console.log("steamObj: {requiredParams,[optionalParams]} these may be passed in or set on the class instance"+"\n");
+    console.log("\n* > 'key' is needed for most methods even if not specified*"+"\n");
+    console.log("\n* > 'version' is needed if you want to specify a lower one*"+"\n");
 
-    for (var interfaceName in Steam.INTERFACES) {
-        if (Steam.INTERFACES.hasOwnProperty(interfaceName)) {
+    steam.getSupportedAPIList({}, function(err, data) {
+        var interfaces = data.apilist.interfaces, methods, params;
+        var _interface, _method, param;
+        for (var i=0; i<interfaces.length; i++) {
+            _interface = interfaces[i];
 
-            var _interface = Steam.INTERFACES[interfaceName];
+            methods = _interface.methods;
+            for (var j=0; j<methods.length; j++) {
+                _method = methods[j];
+                var camelMethodName = _method.name.substr(0,1).toLowerCase() + _method.name.substr(1);
 
-            for (var methodName in _interface) {
-                if (_interface.hasOwnProperty(methodName)) {
+                console.log('\n## %s(steamObj, cb)',camelMethodName);
+                console.log('version %d {%s}', _method.version, _interface.name);
 
-                    var _method = _interface[methodName];
-                    var camelMethodName = methodName.substr(0,1).toLowerCase() + methodName.substr(1);
+                var requiresGameID = _interface.name.indexOf('_') !== -1;
 
-                    var requiredParams = _method.requiredParams;
-                    var optionalParams = _method.optionalParams.slice(0); // .slice(0) clones
-                    var keyIndex = optionalParams.indexOf('key');
-                    if (keyIndex !== -1) {
-                        optionalParams.splice(keyIndex,1);
-                    }
+                params = _method.parameters;
+                if (params.length === 0 && !requiresGameID) console.log("#### No steamObj params");
+                else console.log('####steamObj');
 
-                    var sep = '';
-                    if (requiredParams.length > 0 && optionalParams.length > 0) sep = ',';
-
-                    if (optionalParams.length > 0) optionalParams = '['+optionalParams+']';
-
-                    console.log('{%s} %s(steamObj, callback) # steamObj: {%s%s%s}', interfaceName, camelMethodName, requiredParams, sep, optionalParams);
-
-
+                if (requiresGameID) {
+                    console.log('\n- %s {%s} `%s` : %s', '', 'int', 'gameid', "The game id");
                 }
+
+                for (var k=0; k<params.length; k++) {
+                    param = params[k];
+
+                    var optionStr = param.optional? '(optional)' : '';
+                    param.description = param.description || '';
+                    console.log('\n- %s {%s} `%s` : %s', optionStr, param.type, param.name, param.description);
+                }
+
             }
 
         }
-    }
+    });
 
-    //console.log(Steam.INTERFACES);
 });

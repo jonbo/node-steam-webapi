@@ -1,11 +1,19 @@
 // Requires node 0.11+ and "node --harmony"
 
-var Steam = require('../lib/Steam');
+var Steam = require('..');
 var fs = require('fs');
 var Promise = require('bluebird');
 
 // Create a file called STEAM_KEY and stick your API key in it
-var steamAPIKey = fs.readFileSync('./STEAM_KEY').toString();
+// (or insert it here)
+var steamAPIKey = '';
+if (steamAPIKey.length === 0) {
+    try { steamAPIKey = fs.readFileSync('../STEAM_KEY').toString();}
+    catch(e) {
+        try { steamAPIKey = fs.readFileSync('./STEAM_KEY').toString(); }
+        catch(e) { console.log('No API key provided'); }
+    }
+}
 
 Steam.ready(steamAPIKey, Promise.coroutine(function*(err) {
     if (err) return console.log(err);
