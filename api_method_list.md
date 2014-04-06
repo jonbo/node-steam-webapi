@@ -1,4 +1,4 @@
-Generated on Wed, 12 Feb 2014 05:52:26 GMT
+Generated on Sun, 06 Apr 2014 01:04:23 GMT
 
 * > 'key' is needed for most methods even if not specified*
 
@@ -624,84 +624,6 @@ version 1 {IDOTA2Match_570}
 
 - (optional) {string} `match_id` : 
 
-## getLeagueListing(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getLiveLeagueGames(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getMatchDetails(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {string} `match_id` : Match id
-
-## getMatchHistory(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint32} `hero_id` : 
-
-- (optional) {uint32} `game_mode` : 
-
-- (optional) {uint32} `skill` : 
-
-- (optional) {uint32} `date_min` : 
-
-- (optional) {uint32} `date_max` : 
-
-- (optional) {string} `min_players` : 
-
-- (optional) {string} `account_id` : 
-
-- (optional) {string} `league_id` : 
-
-- (optional) {string} `start_at_match_id` : 
-
-- (optional) {string} `matches_requested` : 
-
-- (optional) {string} `tournament_games_only` : 
-
-## getMatchHistoryBySequenceNum(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint64} `start_at_match_seq_num` : 
-
-- (optional) {uint32} `matches_requested` : 
-
-## getScheduledLeagueGames(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint32} `date_min` : 
-
-- (optional) {uint32} `date_max` : 
-
-## getTeamInfoByTeamID(steamObj, cb)
-version 1 {IDOTA2Match_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint64} `start_at_team_id` : 
-
-- (optional) {uint32} `teams_requested` : 
-
 ## getHeroes(steamObj, cb)
 version 1 {IEconDOTA2_205790}
 ####steamObj
@@ -727,8 +649,6 @@ version 1 {IEconDOTA2_205790}
 -  {int} `gameid` : The game id
 
 - (optional) {uint32} `leagueid` : The ID of the league to get the prize pool of
-
-- (optional) {string} `language` : The prize pool size for the given tournament id.
 
 ## getHeroes(steamObj, cb)
 version 1 {IEconDOTA2_247040}
@@ -756,8 +676,6 @@ version 1 {IEconDOTA2_247040}
 
 - (optional) {uint32} `leagueid` : The ID of the league to get the prize pool of
 
-- (optional) {string} `language` : The prize pool size for the given tournament id.
-
 ## getHeroes(steamObj, cb)
 version 1 {IEconDOTA2_570}
 ####steamObj
@@ -783,34 +701,6 @@ version 1 {IEconDOTA2_570}
 -  {int} `gameid` : The game id
 
 - (optional) {uint32} `leagueid` : The ID of the league to get the prize pool of
-
-- (optional) {string} `language` : The prize pool size for the given tournament id.
-
-## getHeroes(steamObj, cb)
-version 1 {IEconDOTA2_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to provide hero names in.
-
-- (optional) {bool} `itemizedonly` : Return a list of itemized heroes only.
-
-## getRarities(steamObj, cb)
-version 1 {IEconDOTA2_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to provide rarity names in.
-
-## getTournamentPrizePool(steamObj, cb)
-version 1 {IEconDOTA2_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The prize pool size for the given tournament id.
 
 ## getPlayerItems(steamObj, cb)
 version 1 {IEconItems_205790}
@@ -1025,36 +915,6 @@ version 1 {IEconItems_730}
 - (optional) {string} `language` : The language to results in.
 
 ## getPlayerItems(steamObj, cb)
-version 1 {IEconItems_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
-## getSchema(steamObj, cb)
-version 1 {IEconItems_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to return the names in. Defaults to returning string keys.
-
-## getSchemaURL(steamObj, cb)
-version 1 {IEconItems_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getStoreMetaData(steamObj, cb)
-version 1 {IEconItems_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to results in.
-
-## getPlayerItems(steamObj, cb)
 version 1 {IEconItems_841}
 ####steamObj
 
@@ -1102,24 +962,6 @@ version 1 {IGCVersion_570}
 
 ## getServerVersion(steamObj, cb)
 version 1 {IGCVersion_730}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getClientVersion(steamObj, cb)
-version 1 {IGCVersion_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getClusterVersion(steamObj, cb)
-version 1 {IGCVersion_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getServerVersion(steamObj, cb)
-version 1 {IGCVersion_816}
 ####steamObj
 
 -  {int} `gameid` : The game id
@@ -1212,6 +1054,10 @@ version 2 {ISteamNews}
 
 - (optional) {string} `feeds` : Comma-seperated list of feed names to return news for
 
+## payPalPaymentsHubPaymentNotification(steamObj, cb)
+version 1 {ISteamPayPalPaymentsHub}
+#### No steamObj params
+
 ## getCollectionDetails(steamObj, cb)
 version 1 {ISteamRemoteStorage}
 ####steamObj
@@ -1288,6 +1134,8 @@ version 1 {ISteamUser}
 
 -  {string} `vanityurl` : The vanity URL to get a SteamID for
 
+- (optional) {int32} `url_type` : The type of vanity URL. 1 (default): Individual profile, 2: Group, 3: Official game group
+
 ## authenticateUser(steamObj, cb)
 version 1 {ISteamUserAuth}
 ####steamObj
@@ -1297,6 +1145,16 @@ version 1 {ISteamUserAuth}
 -  {rawbinary} `sessionkey` : Should be a 32 byte random blob of data, which is then encrypted with RSA using the Steam system's public key.  Randomness is important here for security.
 
 -  {rawbinary} `encrypted_loginkey` : Should be the users hashed loginkey, AES encrypted with the sessionkey.
+
+## authenticateUserTicket(steamObj, cb)
+version 1 {ISteamUserAuth}
+####steamObj
+
+-  {string} `key` : access key
+
+-  {uint32} `appid` : appid of game
+
+-  {string} `ticket` : Ticket from GetAuthSessionTicket.
 
 ## getTokenDetails(steamObj, cb)
 version 1 {ISteamUserOAuth}
@@ -1554,26 +1412,6 @@ version 1 {ITFPromos_730}
 
 ## grantItem(steamObj, cb)
 version 1 {ITFPromos_730}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `PromoID` : The promo ID to grant an item for
-
-## getItemID(steamObj, cb)
-version 1 {ITFPromos_816}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `PromoID` : The promo ID to grant an item for
-
-## grantItem(steamObj, cb)
-version 1 {ITFPromos_816}
 ####steamObj
 
 -  {int} `gameid` : The game id

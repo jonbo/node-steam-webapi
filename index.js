@@ -31,10 +31,16 @@ Steam.INTERFACES = {};
 /**
  * Retrieve the current set of Steam WebAPI methods from the API itself
  *
- * @param {String} key A Steam API key
+ * @param {String} (optional) key A Steam API key
  * @param {Function} callback After the methods are retrieved and compiled for reference
  */
 Steam.ready = function(key, callback) {
+    // If optional key was not given
+    if (typeof(key) === "function") {
+        callback = key;
+        key = undefined;
+    }
+
     retrieveSteamAPIMethods(key, callback);
 };
 Steam.devMode = false;
@@ -81,7 +87,15 @@ steam.request = function(interfaceName, funcName, version, httpMethod, parameter
 
 };
 
-// Helper method to get a value by first checking the options object, or else the instance variable
+/**
+ * Helper method to get a value by searching for it by priority
+ *
+ *  First checking the options object passed in to the method call
+ *  then the instance object properties
+ *  or finally the global Steam object
+ */
+
+//
 function get(self, steamObj, key) {
     steamObj = steamObj || {};
     if (steamObj[key] !== undefined) {
@@ -89,6 +103,9 @@ function get(self, steamObj, key) {
     }
     else if (self[key] !== undefined) {
         return self[key];
+    }
+    else if (Steam[key] !== undefined) {
+        return Steam[key];
     }
     else {
         throw new Error("Missing required field: "+key);
@@ -237,12 +254,12 @@ function buildSteamWrapperMethod(interfaceName, funcName, defaultVersion, httpMe
     addInterfaceMethod(interfaceName, funcName, wrapperMethod);
 }
 
-// All we need to get started, we will build and attach the rest at run-time
+// All we need to get started, we will build and attach the rest later (down below)
 buildSteamWrapperMethod('ISteamWebAPIUtil', 'GetSupportedAPIList', 1, "GET", [], ['key']);
-
 
 // Retrieve all Steam WebAPI http methods and add to our class prototype
 function retrieveSteamAPIMethods(key, callback) {
+
     var _steam = new Steam();
     _steam.getSupportedAPIList({key:key}, function(err, data) {
 
