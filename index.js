@@ -65,7 +65,25 @@ steam.request = function(interfaceName, funcName, version, httpMethod, parameter
     // Allow to be passed as a number or string
     if (typeof(version) === 'number' || !isNaN(parseInt(version))) version = 'v'+version;
 
-    if (typeof(parameters) === 'object') parameters = querystring.stringify(parameters);
+    if (typeof(parameters) === 'object') { 
+        // Change parameter object for service interfaces
+        // https://developer.valvesoftware.com/wiki/Steam_Web_API#Calling_Service_interfaces 
+        if(interfaceName.toLowerCase().indexOf('service') > 0) {
+            var key     = parameters.key,
+                format  = parameters.format,
+                input   = parameters;
+            delete input['key'];
+            delete input['format'];
+            parameters = {
+                key: key,
+                input_json: JSON.stringify(input)
+            };
+            if(format){
+                parameters.format = format;
+            }
+        }
+        parameters = querystring.stringify(parameters);
+    }
 
     var options = {
         method: httpMethod,
