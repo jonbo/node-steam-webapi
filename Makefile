@@ -17,6 +17,9 @@ demo2:
 demo3:
 	@node --harmony demos/example_with_promises_generators.js
 
+demo4:
+	@node demos/example_games.js
+
 list:
 	@node demos/list_available_methods > api_method_list.md
 
