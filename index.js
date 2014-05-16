@@ -22,7 +22,7 @@ module.exports = Steam;
 Steam.TF2 = 440;
 Steam.DOTA2 = 570;
 Steam.PORTAL2 = 620;
-Steam.CSGO = 710;
+Steam.CSGO = 730;
 
 // References will be stored here
 Steam.INTERFACES = {};
