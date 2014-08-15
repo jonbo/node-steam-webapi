@@ -1,6 +1,6 @@
 {
     "name" : "steam-webapi",
-    "version" : "0.6.3",
+    "version" : "0.6.4",
     "description": "Steam WebAPI wrapper",
     "keywords" : [
         "steam", "tf2", "team fortress 2", "dota2", "csgo", "portal 2"
@@ -10,12 +10,12 @@
         "url": "https://github.com/jonbo/node-steam-webapi"
     },
     "dependencies" : {
-        "qs": "~1.2.1"
+        "qs": "~1.2.2"
     },
 
     "devDependencies": {
-        "mocha": "~1.17.1",
-        "should": "~3.1.2"
+        "mocha": "~1.21.4",
+        "should": "~4.0.4"
     },
     "license": "MIT",
     "main" : "index.js",
