@@ -211,6 +211,16 @@ function getParams(self, steamObj, requiredParams, optionalParams) {
         }
 
     }
+    
+    // Add language  field to all API call
+    try {
+        if (paramObj["language"] === undefined {
+            paramObj["language"] = get(self, steamObj, "language");
+        }
+    } catch (e) {
+
+    }
+    
     return paramObj;
 }
 
