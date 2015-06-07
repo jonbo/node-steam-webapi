@@ -1,6 +1,6 @@
 {
     "name" : "steam-webapi",
-    "version" : "0.6.4",
+    "version" : "0.6.5",
     "description": "Steam WebAPI wrapper",
     "keywords" : [
         "steam", "tf2", "team fortress 2", "dota2", "csgo", "portal 2"
