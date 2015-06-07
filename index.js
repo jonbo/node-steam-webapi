@@ -255,8 +255,10 @@ function addInterfaceMethod(interfaceName, funcName, fN) {
 // Builds the method and add references
 function buildSteamWrapperMethod(interfaceName, funcName, defaultVersion, httpMethod, requiredParams, optionalParams) {
 
-    // Always include the key, if we have one
+    // Always include the key and language fields, if available
+    // GetSupportedAPIList doesn't always list them.
     optionalParams.push('key');
+    optionalParams.push('language');
 
     // Require gameid for methods with the same name in the different interfaces
     if (isMultiGameInterface(interfaceName)) {

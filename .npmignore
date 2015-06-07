@@ -1,2 +1,13 @@
-extra
+# Intellij project files
+*.iws
+*.iml
+.idea/
+*.iml
+
+# Npm
+node_modules
+npm-debug.log
+
+# node-steam-webapi
 STEAM_KEY
+extra
