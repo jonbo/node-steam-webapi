@@ -20,6 +20,7 @@ Steam.ready(steamAPIKey, function(err) {
     console.log("Generated on "+(new Date()).toUTCString());
     console.log("\n* > 'key' is needed for most methods even if not specified*"+"\n");
     console.log("\n* > 'version' is needed if you want to specify a lower one*"+"\n");
+    console.log("\n* > 'language' is available on some methods even if not listed.*"+"\n");
 
     steam.getSupportedAPIList({}, function(err, data) {
         var interfaces = data.apilist.interfaces, methods, params;

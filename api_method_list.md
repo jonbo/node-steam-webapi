@@ -1,9 +1,12 @@
-Generated on Sun, 06 Apr 2014 01:04:23 GMT
+Generated on Sun, 07 Jun 2015 20:00:50 GMT
 
 * > 'key' is needed for most methods even if not specified*
 
 
 * > 'version' is needed if you want to specify a lower one*
+
+
+* > 'language' is available on some methods even if not listed.*
 
 
 ## getGameServersStatus(steamObj, cb)
@@ -12,335 +15,57 @@ version 1 {ICSGOServers_730}
 
 -  {int} `gameid` : The game id
 
-## getFantasyLeagueLeaderboard(steamObj, cb)
+## getFantasyPlayerStats(steamObj, cb)
 version 1 {IDOTA2Fantasy_205790}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the leaderboard of
+-  {uint32} `FantasyLeagueID` : The fantasy league ID
 
--  {uint32} `count` : The number of teams to return
+- (optional) {uint32} `StartTime` : An optional filter for minimum timestamp
 
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
+- (optional) {uint32} `EndTime` : An optional filter for maximum timestamp
 
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
+- (optional) {uint64} `matchid` : An optional filter for a specific match
 
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
+- (optional) {uint32} `SeriesID` : An optional filter for a specific series
 
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
+- (optional) {uint32} `PlayerAccountID` : An optional filter for a specific player
 
-- (optional) {bool} `in_hall` : Restrict to only owners in the International hall
-
-## getFantasyPlayerScore(steamObj, cb)
+## getPlayerOfficialInfo(steamObj, cb)
 version 1 {IDOTA2Fantasy_205790}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {uint32} `fantasyLeagueID` : The Fantasy League ID for scoring purposes
+-  {uint32} `accountid` : The account ID to look up
 
--  {uint32} `playerAccountID` : Pro player account ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getFantasyTeamInfoOwnedBy(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `ownerAccountID` : The AccountID of the user to get the fantasy teams of
-
-- (optional) {uint32} `fantasyLeagueID` : Filter by fantasy league ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-## getFantasyTopPlayers(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the top players of
-
--  {uint32} `count` : The number of teams to return
-
-- (optional) {uint32} `role` : The role of the players to return
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getNextFantasyEvent(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `eventType` : 1=league lock, 2=league unlock
-
-## getPlayerName(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `playerAccountID` : The AccountID of the owner of the pro player
-
-## getStartEndTimesForDay(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyDay` : The day of the touranment
-
-## getValidFantasyPlayersForRoles(steamObj, cb)
-version 1 {IDOTA2Fantasy_205790}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `ownerAccountID` : The AccountID of the owner of the team
-
--  {uint32} `teamIndex` : Index of the owner's team in the fantasy league
-
-## getFantasyLeagueLeaderboard(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the leaderboard of
-
--  {uint32} `count` : The number of teams to return
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-- (optional) {bool} `in_hall` : Restrict to only owners in the International hall
-
-## getFantasyPlayerScore(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID for scoring purposes
-
--  {uint32} `playerAccountID` : Pro player account ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getFantasyTeamInfoOwnedBy(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `ownerAccountID` : The AccountID of the user to get the fantasy teams of
-
-- (optional) {uint32} `fantasyLeagueID` : Filter by fantasy league ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-## getFantasyTopPlayers(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the top players of
-
--  {uint32} `count` : The number of teams to return
-
-- (optional) {uint32} `role` : The role of the players to return
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getNextFantasyEvent(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `eventType` : 1=league lock, 2=league unlock
-
-## getPlayerName(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `playerAccountID` : The AccountID of the owner of the pro player
-
-## getStartEndTimesForDay(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyDay` : The day of the touranment
-
-## getValidFantasyPlayersForRoles(steamObj, cb)
-version 1 {IDOTA2Fantasy_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `ownerAccountID` : The AccountID of the owner of the team
-
--  {uint32} `teamIndex` : Index of the owner's team in the fantasy league
-
-## getFantasyLeagueLeaderboard(steamObj, cb)
+## getFantasyPlayerStats(steamObj, cb)
 version 1 {IDOTA2Fantasy_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the leaderboard of
+-  {uint32} `FantasyLeagueID` : The fantasy league ID
 
--  {uint32} `count` : The number of teams to return
+- (optional) {uint32} `StartTime` : An optional filter for minimum timestamp
 
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
+- (optional) {uint32} `EndTime` : An optional filter for maximum timestamp
 
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
+- (optional) {uint64} `matchid` : An optional filter for a specific match
 
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
+- (optional) {uint32} `SeriesID` : An optional filter for a specific series
 
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
+- (optional) {uint32} `PlayerAccountID` : An optional filter for a specific player
 
-- (optional) {bool} `in_hall` : Restrict to only owners in the International hall
-
-## getFantasyPlayerScore(steamObj, cb)
+## getPlayerOfficialInfo(steamObj, cb)
 version 1 {IDOTA2Fantasy_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {uint32} `fantasyLeagueID` : The Fantasy League ID for scoring purposes
-
--  {uint32} `playerAccountID` : Pro player account ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getFantasyTeamInfoOwnedBy(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `ownerAccountID` : The AccountID of the user to get the fantasy teams of
-
-- (optional) {uint32} `fantasyLeagueID` : Filter by fantasy league ID
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-## getFantasyTopPlayers(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID to get the top players of
-
--  {uint32} `count` : The number of teams to return
-
-- (optional) {uint32} `role` : The role of the players to return
-
-- (optional) {uint32} `startTimeFilter` : Filter by earlist time
-
-- (optional) {uint32} `endTimeFilter` : Filter by latest time
-
-- (optional) {uint32} `matchIDFilter` : Limit the scores to a particular match ID
-
-- (optional) {bool} `last_match` : Limit the scores to the last match played in a league
-
-## getNextFantasyEvent(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `eventType` : 1=league lock, 2=league unlock
-
-## getPlayerName(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `playerAccountID` : The AccountID of the owner of the pro player
-
-## getStartEndTimesForDay(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyDay` : The day of the touranment
-
-## getValidFantasyPlayersForRoles(steamObj, cb)
-version 1 {IDOTA2Fantasy_570}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint32} `fantasyLeagueID` : The Fantasy League ID
-
--  {uint32} `ownerAccountID` : The AccountID of the owner of the team
-
--  {uint32} `teamIndex` : Index of the owner's team in the fantasy league
+-  {uint32} `accountid` : The account ID to look up
 
 ## getLeagueListing(steamObj, cb)
 version 1 {IDOTA2Match_205790}
@@ -354,13 +79,17 @@ version 1 {IDOTA2Match_205790}
 
 -  {int} `gameid` : The game id
 
+- (optional) {uint32} `league_id` : Only show matches of the specified league id
+
+- (optional) {uint64} `match_id` : Only show matches of the specified match id
+
 ## getMatchDetails(steamObj, cb)
 version 1 {IDOTA2Match_205790}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {string} `match_id` : Match id
+-  {uint64} `match_id` : Match id
 
 ## getMatchHistory(steamObj, cb)
 version 1 {IDOTA2Match_205790}
@@ -374,17 +103,13 @@ version 1 {IDOTA2Match_205790}
 
 - (optional) {uint32} `skill` : The average skill range of the match, these can be [1-3] with lower numbers being lower skill. Ignored if an account ID is specified
 
-- (optional) {uint32} `date_min` : The UTC value of the first date to query (rounded to the nearest day)
-
-- (optional) {uint32} `date_max` : The UTC value of the last date to query (rounded to the nearest day)
-
 - (optional) {string} `min_players` : Minimum number of human players that must be in a match for it to be returned
 
 - (optional) {string} `account_id` : An account ID to get matches from. This will fail if the user has their match history hidden
 
 - (optional) {string} `league_id` : The league ID to return games from
 
-- (optional) {string} `start_at_match_id` : The minimum match ID to start from
+- (optional) {uint64} `start_at_match_id` : The minimum match ID to start from
 
 - (optional) {string} `matches_requested` : The number of requested matches to return
 
@@ -406,9 +131,9 @@ version 1 {IDOTA2Match_205790}
 
 -  {int} `gameid` : The game id
 
-- (optional) {uint32} `date_min` : 
+- (optional) {uint32} `date_min` : The starting time stamp to collect scheduled games from. If ignored, it will use the current time
 
-- (optional) {uint32} `date_max` : 
+- (optional) {uint32} `date_max` : The ending time stamp. If this is more than 7 days past the starting time stamp, it will be clamped to 7 days.
 
 ## getTeamInfoByTeamID(steamObj, cb)
 version 1 {IDOTA2Match_205790}
@@ -434,101 +159,7 @@ version 1 {IDOTA2Match_205790}
 
 - (optional) {string} `time_frame` : 
 
-- (optional) {string} `match_id` : 
-
-## getLeagueListing(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getLiveLeagueGames(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getMatchDetails(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {string} `match_id` : Match id
-
-## getMatchHistory(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint32} `hero_id` : The ID of the hero that must be in the matches being queried
-
-- (optional) {uint32} `game_mode` : Which game mode to return matches for
-
-- (optional) {uint32} `skill` : The average skill range of the match, these can be [1-3] with lower numbers being lower skill. Ignored if an account ID is specified
-
-- (optional) {uint32} `date_min` : The UTC value of the first date to query (rounded to the nearest day)
-
-- (optional) {uint32} `date_max` : The UTC value of the last date to query (rounded to the nearest day)
-
-- (optional) {string} `min_players` : Minimum number of human players that must be in a match for it to be returned
-
-- (optional) {string} `account_id` : An account ID to get matches from. This will fail if the user has their match history hidden
-
-- (optional) {string} `league_id` : The league ID to return games from
-
-- (optional) {string} `start_at_match_id` : The minimum match ID to start from
-
-- (optional) {string} `matches_requested` : The number of requested matches to return
-
-- (optional) {string} `tournament_games_only` : Whether or not tournament games should only be returned
-
-## getMatchHistoryBySequenceNum(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint64} `start_at_match_seq_num` : 
-
-- (optional) {uint32} `matches_requested` : 
-
-## getScheduledLeagueGames(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint32} `date_min` : 
-
-- (optional) {uint32} `date_max` : 
-
-## getTeamInfoByTeamID(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint64} `start_at_team_id` : 
-
-- (optional) {uint32} `teams_requested` : 
-
-## getTournamentPlayerStats(steamObj, cb)
-version 1 {IDOTA2Match_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {string} `account_id` : 
-
-- (optional) {string} `league_id` : 
-
-- (optional) {string} `hero_id` : 
-
-- (optional) {string} `time_frame` : 
-
-- (optional) {string} `match_id` : 
+- (optional) {uint64} `match_id` : 
 
 ## getLeagueListing(steamObj, cb)
 version 1 {IDOTA2Match_570}
@@ -542,13 +173,17 @@ version 1 {IDOTA2Match_570}
 
 -  {int} `gameid` : The game id
 
+- (optional) {uint32} `league_id` : Only show matches of the specified league id
+
+- (optional) {uint64} `match_id` : Only show matches of the specified match id
+
 ## getMatchDetails(steamObj, cb)
 version 1 {IDOTA2Match_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
--  {string} `match_id` : Match id
+-  {uint64} `match_id` : Match id
 
 ## getMatchHistory(steamObj, cb)
 version 1 {IDOTA2Match_570}
@@ -562,17 +197,13 @@ version 1 {IDOTA2Match_570}
 
 - (optional) {uint32} `skill` : The average skill range of the match, these can be [1-3] with lower numbers being lower skill. Ignored if an account ID is specified
 
-- (optional) {uint32} `date_min` : The UTC value of the first date to query (rounded to the nearest day)
-
-- (optional) {uint32} `date_max` : The UTC value of the last date to query (rounded to the nearest day)
-
 - (optional) {string} `min_players` : Minimum number of human players that must be in a match for it to be returned
 
 - (optional) {string} `account_id` : An account ID to get matches from. This will fail if the user has their match history hidden
 
 - (optional) {string} `league_id` : The league ID to return games from
 
-- (optional) {string} `start_at_match_id` : The minimum match ID to start from
+- (optional) {uint64} `start_at_match_id` : The minimum match ID to start from
 
 - (optional) {string} `matches_requested` : The number of requested matches to return
 
@@ -594,9 +225,9 @@ version 1 {IDOTA2Match_570}
 
 -  {int} `gameid` : The game id
 
-- (optional) {uint32} `date_min` : 
+- (optional) {uint32} `date_min` : The starting time stamp to collect scheduled games from. If ignored, it will use the current time
 
-- (optional) {uint32} `date_max` : 
+- (optional) {uint32} `date_max` : The ending time stamp. If this is more than 7 days past the starting time stamp, it will be clamped to 7 days.
 
 ## getTeamInfoByTeamID(steamObj, cb)
 version 1 {IDOTA2Match_570}
@@ -622,7 +253,47 @@ version 1 {IDOTA2Match_570}
 
 - (optional) {string} `time_frame` : 
 
-- (optional) {string} `match_id` : 
+- (optional) {uint64} `match_id` : 
+
+## setSteamAccountPurchased(steamObj, cb)
+version 1 {IDOTA2Ticket_570}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {uint32} `eventid` : Event ID
+
+-  {uint64} `steamid` : The 64-bit Steam ID
+
+## steamAccountValidForEvent(steamObj, cb)
+version 1 {IDOTA2Ticket_570}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {uint32} `eventid` : Event ID
+
+-  {uint64} `steamid` : The 64-bit Steam ID
+
+## getEventStatsForAccount(steamObj, cb)
+version 1 {IEconDOTA2_205790}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {uint32} `eventid` : The League ID of the compendium you're looking for.
+
+-  {uint32} `accountid` : The account ID to look up.
+
+- (optional) {string} `language` : The language to provide hero names in.
+
+## getGameItems(steamObj, cb)
+version 1 {IEconDOTA2_205790}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+- (optional) {string} `language` : The language to provide item names in.
 
 ## getHeroes(steamObj, cb)
 version 1 {IEconDOTA2_205790}
@@ -633,6 +304,14 @@ version 1 {IEconDOTA2_205790}
 - (optional) {string} `language` : The language to provide hero names in.
 
 - (optional) {bool} `itemizedonly` : Return a list of itemized heroes only.
+
+## getItemIconPath(steamObj, cb)
+version 1 {IEconDOTA2_205790}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {string} `iconname` : The item icon name to get the CDN path of
 
 ## getRarities(steamObj, cb)
 version 1 {IEconDOTA2_205790}
@@ -650,31 +329,39 @@ version 1 {IEconDOTA2_205790}
 
 - (optional) {uint32} `leagueid` : The ID of the league to get the prize pool of
 
-## getHeroes(steamObj, cb)
-version 1 {IEconDOTA2_247040}
+## getEmoticonAccessForUser(steamObj, cb)
+version 1 {IEconDOTA2_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
+
+-  {uint64} `steamid` : Steam ID of user.
+
+## getEmoticons(steamObj, cb)
+version 1 {IEconDOTA2_570}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+## getEventStatsForAccount(steamObj, cb)
+version 1 {IEconDOTA2_570}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {uint32} `eventid` : The League ID of the compendium you're looking for.
+
+-  {uint32} `accountid` : The account ID to look up.
 
 - (optional) {string} `language` : The language to provide hero names in.
 
-- (optional) {bool} `itemizedonly` : Return a list of itemized heroes only.
-
-## getRarities(steamObj, cb)
-version 1 {IEconDOTA2_247040}
+## getGameItems(steamObj, cb)
+version 1 {IEconDOTA2_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
-- (optional) {string} `language` : The language to provide rarity names in.
-
-## getTournamentPrizePool(steamObj, cb)
-version 1 {IEconDOTA2_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {uint32} `leagueid` : The ID of the league to get the prize pool of
+- (optional) {string} `language` : The language to provide item names in.
 
 ## getHeroes(steamObj, cb)
 version 1 {IEconDOTA2_570}
@@ -685,6 +372,14 @@ version 1 {IEconDOTA2_570}
 - (optional) {string} `language` : The language to provide hero names in.
 
 - (optional) {bool} `itemizedonly` : Return a list of itemized heroes only.
+
+## getItemIconPath(steamObj, cb)
+version 1 {IEconDOTA2_570}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+-  {string} `iconname` : The item icon name to get the CDN path of
 
 ## getRarities(steamObj, cb)
 version 1 {IEconDOTA2_570}
@@ -755,52 +450,6 @@ version 1 {IEconItems_238460}
 -  {int} `gameid` : The game id
 
 -  {uint64} `steamid` : The Steam ID to fetch items for
-
-## getPlayerItems(steamObj, cb)
-version 1 {IEconItems_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
-## getSchema(steamObj, cb)
-version 1 {IEconItems_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to return the names in. Defaults to returning string keys.
-
-## getSchemaURL(steamObj, cb)
-version 1 {IEconItems_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-## getStoreMetaData(steamObj, cb)
-version 1 {IEconItems_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to results in.
-
-## getPlayerItems(steamObj, cb)
-version 1 {IEconItems_260}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
-## getSchema(steamObj, cb)
-version 1 {IEconItems_260}
-####steamObj
-
--  {int} `gameid` : The game id
-
-- (optional) {string} `language` : The language to return the names in. Defaults to returning string keys.
 
 ## getPlayerItems(steamObj, cb)
 version 1 {IEconItems_440}
@@ -930,14 +579,14 @@ version 1 {IEconItems_841}
 
 - (optional) {string} `language` : The language to return the names in. Defaults to returning string keys.
 
-## getServerVersion(steamObj, cb)
+## getClientVersion(steamObj, cb)
 version 1 {IGCVersion_205790}
 ####steamObj
 
 -  {int} `gameid` : The game id
 
 ## getServerVersion(steamObj, cb)
-version 1 {IGCVersion_247040}
+version 1 {IGCVersion_205790}
 ####steamObj
 
 -  {int} `gameid` : The game id
@@ -950,6 +599,12 @@ version 1 {IGCVersion_440}
 
 ## getServerVersion(steamObj, cb)
 version 1 {IGCVersion_440}
+####steamObj
+
+-  {int} `gameid` : The game id
+
+## getClientVersion(steamObj, cb)
+version 1 {IGCVersion_570}
 ####steamObj
 
 -  {int} `gameid` : The game id
@@ -1004,6 +659,28 @@ version 1 {ISteamApps}
 
 -  {uint32} `version` : The installed version of the game
 
+## setClientFilters(steamObj, cb)
+version 1 {ISteamCDN}
+####steamObj
+
+-  {string} `key` : access key
+
+-  {string} `cdnname` : Steam name of CDN property
+
+- (optional) {string} `allowedipblocks` : comma-separated list of allowed IP address blocks in CIDR format - blank for not used
+
+- (optional) {string} `allowedasns` : comma-separated list of allowed client network AS numbers - blank for not used
+
+- (optional) {string} `allowedipcountries` : comma-separated list of allowed client IP country codes in ISO 3166-1 format - blank for not used
+
+## getCMList(steamObj, cb)
+version 1 {ISteamDirectory}
+####steamObj
+
+-  {uint32} `cellid` : Client's Steam cell ID
+
+- (optional) {uint32} `maxcount` : Max number of servers to return
+
 ## getAssetClassInfo(steamObj, cb)
 version 1 {ISteamEconomy}
 ####steamObj
@@ -1027,6 +704,14 @@ version 1 {ISteamEconomy}
 - (optional) {string} `currency` : The currency to filter for
 
 - (optional) {string} `language` : The user's local language
+
+## paymentOutNotification(steamObj, cb)
+version 1 {ISteamEnvoy}
+#### No steamObj params
+
+## paymentOutReversalNotification(steamObj, cb)
+version 1 {ISteamEnvoy}
+#### No steamObj params
 
 ## getNewsForApp(steamObj, cb)
 version 1 {ISteamNews}
@@ -1062,7 +747,7 @@ version 1 {ISteamPayPalPaymentsHub}
 version 1 {ISteamRemoteStorage}
 ####steamObj
 
--  {uint32} `collectioncount` : Number of collection being requested
+-  {uint32} `collectioncount` : Number of collections being requested
 
 -  {uint64} `publishedfileids[0]` : collection ids to get the details for
 
@@ -1301,46 +986,6 @@ version 1 {ITFPromos_205790}
 -  {uint32} `promoid` : The promo ID to grant an item for
 
 ## getItemID(steamObj, cb)
-version 1 {ITFPromos_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `promoid` : The promo ID to grant an item for
-
-## grantItem(steamObj, cb)
-version 1 {ITFPromos_247040}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `promoid` : The promo ID to grant an item for
-
-## getItemID(steamObj, cb)
-version 1 {ITFPromos_260}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `PromoID` : The promo ID to grant an item for
-
-## grantItem(steamObj, cb)
-version 1 {ITFPromos_260}
-####steamObj
-
--  {int} `gameid` : The game id
-
--  {uint64} `steamid` : The Steam ID to fetch items for
-
--  {uint32} `PromoID` : The promo ID to grant an item for
-
-## getItemID(steamObj, cb)
 version 1 {ITFPromos_440}
 ####steamObj
 
@@ -1534,6 +1179,8 @@ version 1 {IPublishedFileService}
 
 -  {bool} `include_recent_votes_only` : If query_type is k_PublishedFileQueryType_RankedByTrend, then limit result set just to items that have votes within the day range given
 
+- (optional) {uint32} `cache_max_age_seconds` : Allow stale data to be returned for the specified number of seconds.
+
 -  {bool} `totalonly` : (Optional) If true, only return the total number of files that satisfy this query.
 
 -  {bool} `return_vote_data` : Return vote data
@@ -1547,6 +1194,20 @@ version 1 {IPublishedFileService}
 -  {bool} `return_children` : Return child item ids in the file details
 
 -  {bool} `return_short_description` : Populate the short_description field instead of file_description
+
+-  {bool} `return_for_sale_data` : Return pricing information, if applicable
+
+- (optional) {bool} `return_metadata` : Populate the metadata
+
+## recordOfflinePlaytime(steamObj, cb)
+version 1 {IPlayerService}
+####steamObj
+
+-  {uint64} `steamid` : 
+
+-  {string} `ticket` : 
+
+-  {{message}} `play_sessions` : 
 
 ## getRecentlyPlayedGames(steamObj, cb)
 version 1 {IPlayerService}
@@ -1661,3 +1322,47 @@ version 1 {IEconService}
 -  {string} `key` : Access key
 
 -  {uint64} `tradeofferid` : 
+
+## reportCheatData(steamObj, cb)
+version 1 {ICheatReportingService}
+####steamObj
+
+-  {string} `key` : Access key
+
+-  {uint64} `steamid` : steamid of the user running and reporting the cheat.
+
+-  {uint32} `appid` : The appid.
+
+-  {string} `pathandfilename` : path and file name of the cheat executable.
+
+-  {string} `webcheaturl` : web url where the cheat was found and downloaded.
+
+-  {uint64} `time_now` : local system time now.
+
+-  {uint64} `time_started` : local system time when cheat process started. ( 0 if not yet run )
+
+-  {uint64} `time_stopped` : local system time when cheat process stopped. ( 0 if still running )
+
+-  {string} `cheatname` : descriptive name for the cheat.
+
+-  {uint32} `game_process_id` : process ID of the running game.
+
+-  {uint32} `cheat_process_id` : process ID of the cheat process that ran
+
+## reportAccountRecoveryData(steamObj, cb)
+version 1 {IAccountRecoveryService}
+####steamObj
+
+-  {string} `loginuser_list` : 
+
+-  {string} `install_config` : 
+
+-  {string} `shasentryfile` : 
+
+-  {string} `machineid` : 
+
+## retrieveAccountRecoveryData(steamObj, cb)
+version 1 {IAccountRecoveryService}
+####steamObj
+
+-  {string} `requesthandle` : 
