@@ -21,6 +21,13 @@
     "main" : "index.js",
 
     "scripts": {
-        "test": "make test"
+        "test": "./node_modules/.bin/mocha --require should --harmony-generators --reporter spec --bail",
+        "demo1": "node demos/example.js",
+        "demo2": "npm install bluebird && node demos/example_with_promises.js",
+        "demo3": "npm install bluebird && node --harmony demos/example_with_promises_generators.js",
+        "demo4": "node demos/example_games.js",
+        "demo5": "node demos/example_league_listing.js",
+        "list": "node demos/list_available_methods > api_method_list.md",
+        "clean": "rm -rf node_modules"
     }
 }

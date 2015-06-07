@@ -100,7 +100,7 @@ It works the same for 'key' and other fields.
 
 # Tests
 ```
-$ make test
+$ npm run test
 ```
 
 # License
